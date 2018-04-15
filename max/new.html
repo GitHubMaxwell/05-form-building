@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- what needs to be done
+  1. make a form
+  2. grab the data (from the input)
+  3. make an object / store as an object (with the constructor, somehow get to new Article)
+  4. how is the preview shown / going to render it out / preview
+  5. generate JSON / show it and let the user copy it
+  
+  - events
+  -on change render the stuff and clear what was in it before
+
+ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab 5</title>
+  <link rel="stylesheet" href="vendor/styles/normalize.css">
+  <link rel="stylesheet" href="vendor/styles/icons.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/modules.css">
+  <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
+  <link>
+  <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? 
+  handles bar template in the index.html page / copy paste it in below this / whenever i have the same code somewhere twice / a way to share that script on the index.html on this page
+  -->
+</head>
+
+<body>
+  <header class="site-header clearfix">
+    <section class="heading-group-h1 pull-left">
+      <h1>
+        Kilovolt Blog!
+      </h1>
+      <h2>The shocking power of static pages</h2>
+    </section>
+    <nav class="main-nav">
+      <div class="icon-menu"></div>
+      <ul>
+        <!-- NOTE (stretch goal): In the same way that we enabled tab navigation on index.html, we can do the same on this page utilizing these elements. -->
+        <li class="tab" data-content="write">
+          <a href="#" class="icon-home"> Write</a>
+        </li>
+        <li class="tab" data-content="articles">
+          <a href="#" class="icon-home"> Preview</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="clearfix">
+
+    <section id="write" class="tab-content">
+      <h1>Create New Article</h1>
+
+      <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
+        in the form fields i want to be as consitent as i can
+        
+           1. Article title
+           2. Article body
+           3. Article author
+           4. Author's URL
+           5. Article category
+           6. Some way to know if this article is a draft or is published -->
+      <form id="new-article">
+        <input id='title' placeholder="title of your articles">
+        <input id='author' placeholder="author name">
+        <input id='authorUrl' placeholder="authors url">
+        <input id='category' placeholder="category of your articles" value="">
+        <!-- the text area will be huge / can take in unlimited info -->
+        <textarea id="body"></textarea>
+        <input id='publishedOn' type="radio" placeholder="category of your articles" value="">
+        <label for="publishedOn"></label>
+        <!-- label for links it to input id / the label can tie event to the input as in you can click the text and it will check the box / wrap the input and span tags in a label tag span has published? -->
+      </form>
+
+    </section>
+
+    <section id="articles" class="tab-content">
+      <!-- NOTE: This is where we will display our article preview -->
+    </section>
+
+    <section id="article-export">
+      <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+      <!-- check the CSS to make sure the form fields look the same / this isnt the complete / needed to add an input field-->
+      <input id="article-json" readonly>
+      <p></p>
+    </section>
+
+  </main>
+  <footer>
+    &copy; 2018 Code Fellows | Static Blog | Happy Ipsum!
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <!-- NOTE (stretch goal): Include script tags for 3rd party libraries to enable Markdown rendering and code syntax highlighting. Use the minified CDN. Keep in mind that if we want these features to render properly on our main blog page (index.html) that we'll need to add those scripts over there, too. -->
+  <script src="scripts/blogArticles.js"></script>
+  <script src="scripts/article.js"></script>
+  <script src="scripts/articleView.js"></script>
+  <script>
+    //this is called a naked script tags / wasnt an ability to load JS files back in the day
+    articleView.initNewArticlePage()
+    // quesiton to ask because we found that the function above wasnt being called in any of the JS files so, where do we want it to be called (what does this function do to determine where it should fire / well its related to the article building capability and we want that to all occur on the newpage.html page / i only want this function to run here when this page is loaded not when the index.html is loaded
+    //new page has a form / is hooked up / something
+
+      // TODO: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
+      // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
+      //  Hint: Look in articleView.js for a function that does this.
+
+      // COMMENT: What is this function doing? Why do we need it?
+      // PUT YOUR RESPONSE HERE
+  </script>
+</body>
+
+</html>
