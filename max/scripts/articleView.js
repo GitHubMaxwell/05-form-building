@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 let articleView = {};
 
@@ -79,56 +79,52 @@ articleView.setTeasers = () => {
 // COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
 articleView.initNewArticlePage = () => {
-  // console.log('HELLO')
+  // console.log('HELLO');
+
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation. the name of this page infers do something to setup the envirnment/ console log to see where its shows up tosee if its being called / copy paste the function name in toehr JS files to see if its there / its neve rbeing asked to run / where should we put it bottom of new page html in the script tags/ 
   $('.tab-content').show(); //tab navigation
 
   // TODO: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
   $('#article-json').on('focus', function () {
-    $(this).select(); //should select whats in the whole field but. theres a contextual this and a jQuery this so we need to wrap this in $() to select sPECIFICALLY whats inside the form field
-    //we could also
-    //document.execCommand('copy');
+    $(this).select();
+    //should select whats in the whole field but. theres a contextual this and a jQuery this so we need to wrap this in $() to select sPECIFICALLY whats inside the form field
+    //we could also document.execCommand('copy');
     //this is dangerous / back in day you had to install a flash app / if you just click the text is copies it to the clickboard
   });
 
   // TODO: Add an event handler to update the preview and the export field if any inputs change.
-  $('#new-article').on('change', 'input,textarea', articleView.create);
+  $('#new-article').on('change', 'input, textarea', articleView.create);
 
   //what is 'input,textarea'
-
   //added id to form because just targeting form opens this function up to EVERY form event even if its not on this page like the index page
-
-
-
 };
 
 articleView.create = () => {
-  console.log
   // TODO: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
   //need to we dont want to remove the entire ssection we want to remove what IN the section / .REMOVE() verse .EMPTY() methods
   $('#articles > *').remove(); //removes all "=" * articles direct = ">" children
 
   // TODO: Instantiate an article based on what's in the form fields:
-  let article = {};
-  article.title = $('title').val();
-  article.category = $('category').val();
-  article.author = $('author').val();
-  article.authorUrl = $('authorUrl').val();
-  article.publishedOn = $('publishedOn').val();
-  article.body = $('body').val();
+  // let article = {};
+  // article.title = $('#title').val();
+  // article.category = $('#category').val();
+  // article.author = $('#author').val();
+  // article.authorUrl = $('#authorUrl').val();
+  // article.publishedOn = $('#publishedOn').val();
+  // article.body = $('#body').val();
 
   //object literal form
-  // let article = {
-  //   title: $('#title').val(),
-  //   category: $('#category').val(),
-  //   author: $('#author').val(),
-  //   authorUrl: $('#authorUrl').val(),
-  //   publishedOn: $('#publishedOn').val(),
-  //   body: $('#body').val(),
-  // };
-  //as we typed in the form the artilce object adds the new data in but we have to clear it so that you can make and edit the single article thats in the preview in real time / eveytime we leave the form fields 
+  let article = {
+    title: $('#title').val(),
+    category: $('#category').val(),
+    author: $('#author').val(),
+    authorUrl: $('#authorUrl').val(),
+    publishedOn: $('#publishedOn').val(),
+    body: $('#body').val(),
+  };
+  //as we typed in the form the artilce object adds the new data in but we have to clear it so that you can make and edit the single article thats in the preview in real time / eveytime we leave the form fields
   //use that object to make a new article
 
   let newArticle = new Article(article);
@@ -142,11 +138,11 @@ articleView.create = () => {
   $('pre code').each();
 
   // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-  //fill in the take that 
+  //fill in the take that
   //articel-json
   $('#article-json').val(JSON.stringify(article));
-  // what value should we assign / that newly created article's data needs to be put 
-  ///if you see object object that you didnt JSON stringify 
+  // what value should we assign / that newly created article's data needs to be put
+  ///if you see object object that you didnt JSON stringify
   //json beautifier.com paste output to it and it will change it over
 
 };
@@ -154,7 +150,7 @@ articleView.create = () => {
 // COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
 articleView.initIndexPage = () => {
-  articles.forEach(article => $('#articles').append(article.toHtml()));
+  articles.forEach(article => $('#articles').append(article.toHtml())); // problem here?
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
