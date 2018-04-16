@@ -47,19 +47,26 @@
   font-weight: bold;
   text-decoration: none;
 }
-
-#article-export label {
+#article-export {
+  float:right;
+}
+#article-export label, #article-export [value] {
   font-size: .8em;
   font-style: italic;
   color: #ccc;
 }
+
 /* this is new to style the json output*/
 #article-export:after {
   content:'';
   display:table-cell; 
   clear:both;
 }
-/
+
+/* #new-article input[type="checkbox"] {
+ font-size:20px;
+} */
+
 @media only screen and (min-width: 640px) {
   .icon-menu {
     display: none;

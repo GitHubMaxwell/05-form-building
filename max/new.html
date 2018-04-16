@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="styles/modules.css">
   <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
   <link>
-  <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? 
+  <!-- DONE: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? 
   handles bar template in the index.html page / copy paste it in below this / whenever i have the same code somewhere twice / a way to share that script on the index.html on this page
   -->
   <script id="article-template" type="text/x-handlebars-template">
@@ -68,7 +68,7 @@
     <section id="write" class="tab-content">
       <h1>Create New Article</h1>
 
-      <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
+      <!-- DONE: Set up a form to accept user input for a new blog article. Remember that we need:
         in the form fields i want to be as consitent as i can
         
            1. Article title
@@ -78,14 +78,13 @@
            5. Article category
            6. Some way to know if this article is a draft or is published -->
       <form id="new-article">
-        <input id='title' placeholder="title of your articles">
+        <input id='title' placeholder="title of your article">
         <input id='author' placeholder="author name">
-        <input id='authorUrl' placeholder="authors url">
-        <input id='category' placeholder="category of your articles" value="">
-        <!-- the text area will be huge / can take in unlimited info -->
+        <input id='authorUrl' placeholder="author url">
+        <input id='category' placeholder="category of your article" value="">
         <textarea id="body"></textarea>
-        <input id='publishedOn' type="radio" placeholder="category of your articles" value="">
-        <label for="publishedOn">Published?</label>
+        <input id='publishedOn' type="checkbox">
+        <label for='publishedOn'>Published?</label>
         <!-- label for links it to input id / the label can tie event to the input as in you can click the text and it will check the box / wrap the input and span tags in a label tag span has published? -->
       </form>
 
@@ -96,7 +95,7 @@
     </section>
 
     <section id="article-export">
-      <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+      <!-- DONE: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
       <!-- check the CSS to make sure the form fields look the same / this isnt the complete / needed to add an input field-->
       <input id="article-json" value="{json would go here}">
       <label>When finalized, copy the above JSON, and paste it into blogArticles.js</label>
@@ -115,15 +114,14 @@
   <script src="scripts/article.js"></script>
   <script src="scripts/articleView.js"></script>
   <script>
-    //this is called a naked script tags / wasnt an ability to load JS files back in the day
-    articleView.initNewArticlePage()
+    //this is called a naked script tag / wasnt an ability to load JS files back in the day
     // quesiton to ask because we found that the function above wasnt being called in any of the JS files so, where do we want it to be called (what does this function do to determine where it should fire / well its related to the article building capability and we want that to all occur on the newpage.html page / i only want this function to run here when this page is loaded not when the index.html is loaded
     //new page has a form / is hooked up / something
 
-      // TODO: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
-      // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
-      //  Hint: Look in articleView.js for a function that does this.
-
+    // DONE: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
+    // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
+    //  Hint: Look in articleView.js for a function that does this.
+    articleView.initNewArticlePage()
       // COMMENT: What is this function doing? Why do we need it?
       // PUT YOUR RESPONSE HERE
   </script>

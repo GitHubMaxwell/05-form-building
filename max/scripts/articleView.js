@@ -1,9 +1,7 @@
-// 'use strict';
+'use strict';
 
 let articleView = {};
 
-// are these (the below methods) object prototypes of the articleView object above??? as if they were defined inside like articleView.populateFilters = () => {...code inside...};
-//why do the ${val} have op/clos double quotes? ONLY when the attribu value
 articleView.populateFilters = () => {
   $('article').each(function () {
     if (!$(this).hasClass('template')) {
@@ -76,37 +74,36 @@ articleView.setTeasers = () => {
   });
 };
 
-// COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// DONE/COMMENT: Where is this function called? Why?
+// this function is called in the new.html page because
 articleView.initNewArticlePage = () => {
-  // console.log('HELLO');
 
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation. the name of this page infers do something to setup the envirnment/ console log to see where its shows up tosee if its being called / copy paste the function name in toehr JS files to see if its there / its neve rbeing asked to run / where should we put it bottom of new page html in the script tags/ 
+  // DONE: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+  //the name of this page infers do something to setup the enviornment/ console log to see where its shows up to see if its being called / copy paste the function name in toehr JS files to see if its there / its neve rbeing asked to run / where should we put it bottom of new page html in the script tags/
   $('.tab-content').show(); //tab navigation
 
-  // TODO: The new articles we create will be copy/pasted into our source data file.
+  // DONE: The new articles we create will be copy/pasted into our source data file.
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
   $('#article-json').on('focus', function () {
     $(this).select();
-    //should select whats in the whole field but. theres a contextual this and a jQuery this so we need to wrap this in $() to select sPECIFICALLY whats inside the form field
-    //we could also document.execCommand('copy');
-    //this is dangerous / back in day you had to install a flash app / if you just click the text is copies it to the clickboard
+
+    //we need to use the jQuery "this" $('this') to select SPECIFICALLY what element the event happens on inside the form field
   });
 
-  // TODO: Add an event handler to update the preview and the export field if any inputs change.
+  // DONE: Add an event handler to update the preview and the export field if any inputs change.
   $('#new-article').on('change', 'input, textarea', articleView.create);
 
-  //what is 'input,textarea'
   //added id to form because just targeting form opens this function up to EVERY form event even if its not on this page like the index page
 };
 
 articleView.create = () => {
-  // TODO: Set up a variable to hold the new article we are creating.
+  // DONE: Set up a variable to hold the new article we are creating.
   // Clear out the #articles element, so we can put in the updated preview
-  //need to we dont want to remove the entire ssection we want to remove what IN the section / .REMOVE() verse .EMPTY() methods
-  $('#articles > *').remove(); //removes all "=" * articles direct = ">" children
+  //we dont want to remove the ENTIRE section ('#articles') we want to remove whats INSIDE/CHILDREN the section / .REMOVE() versus .EMPTY() methods
+  $('#articles > *').remove(); //removes ALL direct children of the #articles
 
-  // TODO: Instantiate an article based on what's in the form fields:
+  // DONE: Instantiate an article based on what's in the form fields:
+
   // let article = {};
   // article.title = $('#title').val();
   // article.category = $('#category').val();
@@ -114,41 +111,41 @@ articleView.create = () => {
   // article.authorUrl = $('#authorUrl').val();
   // article.publishedOn = $('#publishedOn').val();
   // article.body = $('#body').val();
-
+  let date = new Date();
+  let newDate = date.toLocaleDateString();
   //object literal form
   let article = {
     title: $('#title').val(),
     category: $('#category').val(),
     author: $('#author').val(),
     authorUrl: $('#authorUrl').val(),
-    publishedOn: $('#publishedOn').val(),
+    publishedOn: newDate,
     body: $('#body').val(),
   };
-  //as we typed in the form the artilce object adds the new data in but we have to clear it so that you can make and edit the single article thats in the preview in real time / eveytime we leave the form fields
+  //as we type in the form the article object adds the new data in / but we have to clear it so that you can make and edit the single article thats in the preview in real time / everytime we leave the form fields
   //use that object to make a new article
 
   let newArticle = new Article(article);
-  //have to do this because it give its to toHtml method / handles bars to throw it up on the page
+  //have to do this because it gives the new object to the toHtml method in article.js to handlebars in order to render it up on the page
 
-  // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+  // DONE: Use our interface to the Handblebars template to put this new article into the DOM:
   $('#articles').append(newArticle.toHtml());
 
 
   // TODO: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
   $('pre code').each();
 
-  // TODO: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-  //fill in the take that
-  //articel-json
+  // DONE: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+
   $('#article-json').val(JSON.stringify(article));
   // what value should we assign / that newly created article's data needs to be put
-  ///if you see object object that you didnt JSON stringify
+  // if you see object object that you didnt JSON stringify
   //json beautifier.com paste output to it and it will change it over
 
 };
 
-// COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// DONE/COMMENT: Where is this function called? Why?
+// this function is called in the index.html page in order to trigger all these functions BUT not the initNewArticlePage() function
 articleView.initIndexPage = () => {
   articles.forEach(article => $('#articles').append(article.toHtml())); // problem here?
   articleView.populateFilters();
